@@ -1,0 +1,12 @@
+$link-color: blue;  /* create variable for all links */
+$padding: 20px;  /* create variable for padding */
+
+nav {
+  padding: $padding;
+}
+.sidebar a {
+  color: $link-color;
+}
+.heading {
+  color: $link-color;
+}
