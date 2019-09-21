@@ -9,17 +9,11 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, dice;
+var scores, roundScore, activePlayer;
 scores = [0,0];
 roundScore = 0;
 activePlayer = 0;
 
-//var dice = Math.floor(Math.random() * 6) + 1;
-//console.log(dice);
-//document.querySelector("#current-" + activePlayer).textContent = dice;
-//document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
-//var x = document.querySelector("#score-0").textContent;
-//console.log(x);
 
 document.querySelector('.dice').style.display = 'none';
 document.getElementById('score-0').textContent = '0';
@@ -35,5 +29,21 @@ document.querySelector('.btn-roll').addEventListener('click', function rollDice(
   displayDice.style.display = 'block';
   displayDice.src = 'dice-' + dice + '.png';
   //3. update the score if number rolled was not 1
-
+  if (dice !== 1){
+    //add score
+    roundScore += dice;
+    document.querySelector('#current-' + activePlayer).textContent = roundScore;
+  } else {
+    //next player
+    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+    roundScore = 0;
+  }
 });
+
+
+//var dice = Math.floor(Math.random() * 6) + 1;
+//console.log(dice);
+//document.querySelector("#current-" + activePlayer).textContent = dice;
+//document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
+//var x = document.querySelector("#score-0").textContent;
+//console.log(x);
