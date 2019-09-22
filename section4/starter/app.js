@@ -23,7 +23,6 @@ document.querySelector('.btn-roll').addEventListener('click', function rollDice(
     // 1. random number
     var dice = Math.floor(Math.random() * 6) + 1;
     currentRoll = dice;
-    console.log(lastRoll, currentRoll);
     // 2. display the result
     var displayDice = document.querySelector('.dice');
     displayDice.style.display = 'block';
