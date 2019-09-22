@@ -148,10 +148,20 @@ i {
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
 
-.dice {
+.dice0 {
     position: absolute;
     left: 50%;
     top: 178px;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    height: 100px;
+    -webkit-box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
+            box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
+}
+.dice1 {
+    position: absolute;
+    left: 50%;
+    top: 300px;
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
     height: 100px;
