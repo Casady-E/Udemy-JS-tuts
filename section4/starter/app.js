@@ -9,24 +9,34 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, gamePlaying;
+var scores, roundScore, activePlayer, gamePlaying, lastRoll, currentRoll, winScore;
 
 init();
 
+function changeWinScore(){
+  init();
+};
+
 document.querySelector('.btn-roll').addEventListener('click', function rollDice(){
   if (gamePlaying){
+    lastRoll = currentRoll;
     // 1. random number
     var dice = Math.floor(Math.random() * 6) + 1;
+    currentRoll = dice;
+    console.log(lastRoll, currentRoll);
     // 2. display the result
     var displayDice = document.querySelector('.dice');
     displayDice.style.display = 'block';
     displayDice.src = 'dice-' + dice + '.png';
     //3. update the score if number rolled was not 1
-    if (dice !== 1){
+    if (dice !== 1) {
       //add score
       roundScore += dice;
       document.querySelector('#current-' + activePlayer).textContent = roundScore;
-    } else {
+    } else if ((dice !== 1) && (lastRoll == 6 && currentRoll == 6)) {
+      document.querySelector('#score-' + activePlayer).textContent = 0;
+      nextPlayer();
+    }else if (dice == 1){
       //next player
   nextPlayer();
     }
@@ -42,7 +52,7 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
   document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
   //check if player won the game
-  if (scores[activePlayer] >= 10){
+  if ((scores[activePlayer] >= winScore) || scores[activePlayer] == winScore){
     document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
     document.querySelector('.dice').style.display = 'none';
     document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
@@ -58,7 +68,8 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
 function nextPlayer(){
   activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
   roundScore = 0;
-
+  lastRoll = 0;
+  currentRoll = 0;
   document.getElementById('current-0').textContent = '0';
   document.getElementById('current-1').textContent = '0';
 
@@ -77,6 +88,9 @@ scores = [0,0];
 roundScore = 0;
 activePlayer = 0;
 gamePlaying = true;
+lastRoll = 0;
+currentRoll = 0;
+winScore = parseInt(document.getElementById("number-value").value);
 document.querySelector('.dice').style.display = 'none';
 document.getElementById('score-0').textContent = '0';
 document.getElementById('score-1').textContent = '0';
