@@ -248,6 +248,7 @@ john();
 jane();
 harold();
 */
+/*
 function interviewQuestion(job){
   return function(name){
     if (job === 'designer'){
@@ -263,3 +264,6 @@ function interviewQuestion(job){
 interviewQuestion('teacher')('John');
 interviewQuestion('designer')('Jane');
 interviewQuestion('baller')('Kobe');
+*/
+
+// bind, call, apply
